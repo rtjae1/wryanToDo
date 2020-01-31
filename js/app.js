@@ -1,3 +1,5 @@
+
+
 // select the elements
 const clear = document.querySelector(".clear");
 const dateElement = document.getElementById("date");
@@ -17,8 +19,8 @@ let data = localStorage.getItem("TODO");
 
 // check if data is not empty
 if(data){
-  LIST = $.getJSON(data);
-    // LIST = JSON.parse(data);
+  // LIST = $.getJSON(data);
+    LIST = JSON.parse(data);
     id = LIST.length; //set the id to the last one in the list
     loadList(LIST); // load the list to the user interface
 }else{
@@ -29,10 +31,15 @@ if(data){
 
 // load items to the user's interface
 function loadList(array) {
-  for (var i = 0, len = array.length; i < len; i++) {
+    array.forEach(function(item) {
         addToDo(item.name, item.id, item.done, item.trash);
-    }
+    })
 }
+
+// for (var i = 0, len = arr.length; i < len; i++) {
+//   someFn(arr[i]);
+// }
+
 
 // clear the local storage
 clear.addEventListener("click", function () {
